@@ -1,0 +1,18 @@
+# Archivos de compilación y temporales
+/build
+/bin
+/.gradle
+.gradle
+build/
+
+# Archivos de sistema y del IDE
+.vscode/
+.idea/
+*.iml
+.DS_Store
+
+# Archivos de prueba locales (los que creamos nosotros)
+body.json
+
+# Logs
+*.log
