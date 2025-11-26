@@ -81,3 +81,7 @@ Write-Host "   2. O ejecutar el JAR: java -jar build\libs\APIDeployExample-1.0-S
 Write-Host "   3. Probar la API: http://localhost:8080/api/stats" -ForegroundColor White
 Write-Host ""
 
+
+
+
+

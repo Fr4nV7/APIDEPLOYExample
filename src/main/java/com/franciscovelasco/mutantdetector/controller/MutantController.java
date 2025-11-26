@@ -12,7 +12,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Francisco Velasco (Legajo 51141)
  */
 @RestController
-@RequestMapping("/api")
 @Validated
 @RequiredArgsConstructor
 public class MutantController {
@@ -30,7 +28,7 @@ public class MutantController {
     private final DnaAnalyzerService dnaAnalyzerService;
     private final DnaMetricsService dnaMetricsService;
 
-    @PostMapping("/mutant")
+    @PostMapping("/mutant/")
     public ResponseEntity<Void> analyzeGenome(@Valid @RequestBody GenomeInput genomeInput) {
         boolean mutant = dnaAnalyzerService.inspectGenome(genomeInput.dnaRows());
         // Forzamos 403 para humanos porque el cliente necesita distinguir ambos casos sin payload adicional.

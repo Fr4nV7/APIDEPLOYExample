@@ -8,6 +8,22 @@
 
 > 📚 **Proyecto Educativo**: API REST para detectar mutantes analizando secuencias de ADN. Desarrollado como examen técnico de MercadoLibre Backend Developer.
 
+## 🌐 API Desplegada
+
+**URL de la API en Render:** `https://mutant-detector-api.onrender.com`
+
+**Endpoints disponibles:**
+- `POST https://mutant-detector-api.onrender.com/mutant/` - Verificar si un ADN es mutante
+- `GET https://mutant-detector-api.onrender.com/stats` - Obtener estadísticas
+- `GET https://mutant-detector-api.onrender.com/swagger-ui.html` - Documentación Swagger
+
+**Ejemplo de uso:**
+```bash
+curl -X POST https://mutant-detector-api.onrender.com/mutant/ \
+  -H "Content-Type: application/json" \
+  -d '{"dna":["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]}'
+```
+
 ---
 
 ## 📋 Tabla de Contenidos
@@ -820,7 +836,7 @@ Este proyecto sigue una **arquitectura en capas** muy común en aplicaciones Spr
 
 ### Flujo de una Request
 
-Veamos qué sucede cuando envías `POST /mutant` con un ADN:
+Veamos qué sucede cuando envías `POST /mutant/` con un ADN:
 
 ```
 1. CLIENTE envía JSON:
@@ -1400,14 +1416,14 @@ SELECT * FROM dna_records WHERE dna_hash = '3a5f2c9e...';
 
 ## 📡 API Endpoints
 
-### 1. POST /mutant - Verificar si es Mutante
+### 1. POST /mutant/ - Verificar si es Mutante
 
 **Descripción:** Recibe una secuencia de ADN y determina si es mutante.
 
 #### Request
 
 ```http
-POST http://localhost:8080/mutant
+POST http://localhost:8080/mutant/
 Content-Type: application/json
 
 {
@@ -1487,17 +1503,17 @@ La API valida:
 
 ```bash
 # Mutante (retorna 200)
-curl -X POST http://localhost:8080/mutant \
+curl -X POST http://localhost:8080/mutant/ \
   -H "Content-Type: application/json" \
   -d '{"dna":["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]}'
 
 # Humano (retorna 403)
-curl -X POST http://localhost:8080/mutant \
+curl -X POST http://localhost:8080/mutant/ \
   -H "Content-Type: application/json" \
   -d '{"dna":["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"]}'
 
 # Inválido (retorna 400)
-curl -X POST http://localhost:8080/mutant \
+curl -X POST http://localhost:8080/mutant/ \
   -H "Content-Type: application/json" \
   -d '{"dna":["ATXC","CAGT","TTAT","AGAC"]}'
 ```
@@ -1867,7 +1883,7 @@ Descarga desde: https://www.postman.com/downloads/
 
 1. New → HTTP Request
 2. Método: **POST**
-3. URL: `http://localhost:8080/mutant`
+3. URL: `http://localhost:8080/mutant/`
 4. Headers:
    - Key: `Content-Type`
    - Value: `application/json`
@@ -1921,13 +1937,13 @@ curl http://localhost:8080/stats
 #### Mac/Linux (Bash)
 
 ```bash
-# POST /mutant (Mutante)
-curl -X POST http://localhost:8080/mutant \
+# POST /mutant/ (Mutante)
+curl -X POST http://localhost:8080/mutant/ \
   -H "Content-Type: application/json" \
   -d '{"dna":["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]}'
 
-# POST /mutant (Humano)
-curl -X POST http://localhost:8080/mutant \
+# POST /mutant/ (Humano)
+curl -X POST http://localhost:8080/mutant/ \
   -H "Content-Type: application/json" \
   -d '{"dna":["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"]}'
 
@@ -2302,8 +2318,8 @@ public class MutantController {
 
 **En este proyecto:**
 ```
-POST /mutant  → Crear análisis de DNA
-GET /stats    → Obtener estadísticas
+POST /mutant/  → Crear análisis de DNA
+GET /stats     → Obtener estadísticas
 ```
 
 ---
